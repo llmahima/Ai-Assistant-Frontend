@@ -101,19 +101,58 @@ body {
   min-height: 100vh;
 }
 
+/* Center-aligned content container - use for main content areas */
+.layout-container {
+  width: 100%;
+  max-width: 80rem; /* 1280px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .layout-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .layout-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Narrow content (hero, chat preview, CTA) */
+.layout-container-narrow {
+  max-width: 45rem; /* 720px */
+}
+
+/* Wide content (features grid) */
+.layout-container-wide {
+  max-width: 72rem; /* 1152px */
+}
+
 h1, h2, h3, h4, h5, h6, .font-heading {
   font-family: 'Outfit', system-ui, sans-serif;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #ffffff14;
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .glass-panel {

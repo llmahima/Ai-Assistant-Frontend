@@ -79,8 +79,8 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen w-full bg-background">
       {/* ─── Nav ─── */}
-      <nav className="sticky top-0 z-50 w-full border-b border-white/5 glass-panel">
-        <div className="mx-auto flex h-14 w-full max-w-[1080px] items-center justify-between px-6">
+      <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/80 backdrop-blur-xl">
+        <div className="layout-container flex h-14 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary">
               <Sparkles className="h-3.5 w-3.5 text-white" />
@@ -88,12 +88,12 @@ export default function LandingPage() {
             <span className="text-base font-bold tracking-tight">SupportAI</span>
           </Link>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2 sm:gap-4">
             <a href="#features" className="hidden sm:block">
-              <Button variant="ghost" size="sm">Features</Button>
+              <Button variant="ghost" size="sm" className="px-3">Features</Button>
             </a>
             <a href="#how-it-works" className="hidden sm:block">
-              <Button variant="ghost" size="sm">How it Works</Button>
+              <Button variant="ghost" size="sm" className="px-3">How it Works</Button>
             </a>
             <Link to="/chat">
               <Button size="sm" className="gap-1.5">
@@ -113,13 +113,13 @@ export default function LandingPage() {
         </div>
 
         <motion.div
-          className="relative z-10 mx-auto flex w-full max-w-[720px] flex-col items-center px-6 pb-10 pt-14 text-center sm:pb-14 sm:pt-20"
+          className="layout-container layout-container-narrow relative z-10 mx-auto flex w-full flex-col items-center pb-16 pt-16 text-center sm:pb-20 sm:pt-24"
           initial="hidden"
           animate="visible"
           variants={stagger}
         >
           <motion.div variants={fadeInUp} transition={{ duration: 0.4 }}>
-            <Badge variant="outline" className="mb-5 gap-2 border-primary/25 bg-primary/5 text-xs text-primary">
+            <Badge variant="outline" className="mb-6 gap-2 border-primary/25 bg-primary/5 text-xs text-primary">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
@@ -141,7 +141,7 @@ export default function LandingPage() {
           <motion.p
             variants={fadeInUp}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="mt-4 max-w-md text-[15px] leading-relaxed text-muted-foreground"
+            className="mt-5 max-w-md text-[15px] leading-[1.7] text-muted-foreground"
           >
             Experience the future of customer support. Get instant, intelligent
             answers from an AI that understands your product inside and out.
@@ -150,7 +150,7 @@ export default function LandingPage() {
           <motion.div
             variants={fadeInUp}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="mt-7 flex items-center gap-3"
+            className="mt-8 flex flex-wrap items-center justify-center gap-3"
           >
             <Link to="/chat">
               <Button size="lg" className="gap-2 rounded-lg px-7 shadow-lg shadow-primary/25">
@@ -167,14 +167,14 @@ export default function LandingPage() {
           <motion.div
             variants={fadeInUp}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="mt-10 inline-flex items-center overflow-hidden rounded-xl border border-white/5 bg-white/[0.02]"
+            className="mt-12 inline-flex items-center overflow-hidden rounded-xl border border-white/10 bg-white/[0.04]"
           >
             {stats.map((stat, i) => (
               <div key={stat.label} className="flex items-center">
-                {i > 0 && <Separator orientation="vertical" className="h-8 bg-white/5" />}
-                <div className="px-7 py-3 text-center">
+                {i > 0 && <Separator orientation="vertical" className="h-10 bg-white/10" />}
+                <div className="px-8 py-3.5 text-center">
                   <div className="text-lg font-bold leading-none sm:text-xl">{stat.value}</div>
-                  <div className="mt-1 text-[11px] text-muted-foreground">{stat.label}</div>
+                  <div className="mt-1.5 text-xs text-muted-foreground">{stat.label}</div>
                 </div>
               </div>
             ))}
@@ -183,23 +183,26 @@ export default function LandingPage() {
       </section>
 
       {/* ─── Chat Preview ─── */}
-      <section className="w-full px-6 pb-16 sm:pb-20">
+      <section className="w-full py-12 sm:py-16 lg:py-20">
         <motion.div
-          className="mx-auto w-full max-w-[640px]"
+          className="layout-container mx-auto w-full max-w-[37.5rem]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-30px' }}
           variants={fadeIn}
           transition={{ duration: 0.6 }}
         >
-          <Card className="overflow-hidden border-white/5 bg-white/[0.02] shadow-2xl shadow-black/30">
-            <div className="flex items-center gap-1.5 border-b border-white/5 bg-white/[0.02] px-3.5 py-2">
-              <div className="h-2 w-2 rounded-full bg-[#ff5f57]" />
-              <div className="h-2 w-2 rounded-full bg-[#febc2e]" />
-              <div className="h-2 w-2 rounded-full bg-[#28c840]" />
-              <span className="ml-2 font-mono text-[11px] text-muted-foreground">SupportAI Chat</span>
+          <Card className="overflow-hidden border-white/10 bg-white/[0.03] shadow-xl shadow-black/40 ring-1 ring-white/5">
+            {/* Chat window title bar */}
+            <div className="flex items-center gap-3 border-b border-white/10 bg-white/[0.04] px-5 py-3.5">
+              <div className="flex items-center gap-1.5">
+                <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                <div className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                <div className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+              </div>
+              <span className="font-mono text-xs font-medium text-muted-foreground">SupportAI Chat</span>
             </div>
-            <CardContent className="space-y-3 p-4 sm:p-5">
+            <CardContent className="space-y-5 p-6 sm:p-8">
               <ChatBubble side="right" delay={0.15}>How can I reset my password?</ChatBubble>
               <AiBubble delay={0.4}>
                 Navigate to <strong>Settings &gt; Security &gt; Reset Password</strong>. Click
@@ -215,25 +218,25 @@ export default function LandingPage() {
       </section>
 
       {/* ─── Features ─── */}
-      <section id="features" className="w-full border-t border-white/5 py-16 sm:py-20">
-        <div className="mx-auto w-full max-w-[1080px] px-6">
+      <section id="features" className="w-full border-t border-white/10 py-20 sm:py-24 lg:py-28">
+        <div className="layout-container layout-container-wide mx-auto w-full">
           <SectionHeader badge="Features" title="Why Choose Our AI Assistant?" subtitle="Built with cutting-edge technology to deliver the best support experience." />
 
           <motion.div
-            className="mt-10 grid gap-4 sm:grid-cols-3 sm:mt-12"
+            className="mt-14 grid gap-6 sm:grid-cols-3 sm:gap-8 lg:mt-16"
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={stagger}
           >
             {features.map((f) => {
               const Icon = f.icon
               return (
                 <motion.div key={f.title} variants={fadeInUp} transition={{ duration: 0.35 }}>
-                  <Card className="h-full border-white/5 bg-white/[0.02] transition-all hover:-translate-y-0.5 hover:border-white/10 hover:shadow-lg hover:shadow-primary/5">
-                    <CardContent className="p-5 lg:p-6">
-                      <div className={`mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br ${f.gradient}`}>
+                  <Card className="h-full border-white/10 bg-white/[0.03] transition-all hover:-translate-y-0.5 hover:border-white/15 hover:shadow-lg hover:shadow-primary/5">
+                    <CardContent className="p-6 lg:p-7">
+                      <div className={`mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-gradient-to-br ${f.gradient}`}>
                         <Icon className={`h-5 w-5 ${f.iconColor}`} />
                       </div>
-                      <h3 className="mb-1.5 text-[15px] font-semibold">{f.title}</h3>
-                      <p className="text-[13px] leading-relaxed text-muted-foreground">{f.description}</p>
+                      <h3 className="mb-2 text-base font-semibold">{f.title}</h3>
+                      <p className="text-[14px] leading-[1.6] text-muted-foreground">{f.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -244,12 +247,12 @@ export default function LandingPage() {
       </section>
 
       {/* ─── How It Works ─── */}
-      <section id="how-it-works" className="w-full border-t border-white/5 py-16 sm:py-20">
-        <div className="mx-auto w-full max-w-[900px] px-6">
+      <section id="how-it-works" className="w-full border-t border-white/10 py-20 sm:py-24 lg:py-28">
+        <div className="layout-container mx-auto w-full max-w-[56rem]">
           <SectionHeader badge="How it works" title="Three Simple Steps" subtitle="Getting help is as simple as having a conversation." />
 
           <motion.div
-            className="mt-10 grid gap-8 md:grid-cols-3 sm:mt-12"
+            className="mt-14 grid gap-12 md:grid-cols-3 md:gap-8 lg:mt-16"
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={stagger}
           >
             {steps.map((step, i) => {
@@ -259,16 +262,16 @@ export default function LandingPage() {
                   {i < steps.length - 1 && (
                     <div className="pointer-events-none absolute left-[60%] top-8 hidden h-px w-[80%] bg-gradient-to-r from-white/8 to-transparent md:block" />
                   )}
-                  <div className="relative mb-4 inline-flex items-center justify-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-white/5 bg-white/[0.03]">
+                  <div className="relative mb-5 inline-flex items-center justify-center">
+                    <div className="flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
                     <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[9px] font-bold text-white">
                       {step.number}
                     </span>
                   </div>
-                  <h3 className="mb-1.5 text-[15px] font-semibold">{step.title}</h3>
-                  <p className="mx-auto max-w-[220px] text-[13px] leading-relaxed text-muted-foreground">{step.description}</p>
+                  <h3 className="mb-2 text-base font-semibold">{step.title}</h3>
+                  <p className="mx-auto max-w-[240px] text-[14px] leading-[1.6] text-muted-foreground">{step.description}</p>
                 </motion.div>
               )
             })}
@@ -277,19 +280,19 @@ export default function LandingPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="w-full px-6 py-16 sm:py-20">
-        <div className="relative mx-auto w-full max-w-[480px]">
+      <section className="w-full py-20 sm:py-24 lg:py-28">
+        <div className="layout-container layout-container-narrow relative mx-auto w-full max-w-[30rem]">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute bottom-0 left-1/2 h-[200px] w-[350px] -translate-x-1/2 rounded-full bg-primary/5 blur-[100px]" />
           </div>
           <motion.div className="relative z-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} transition={{ duration: 0.4 }}>
-            <Card className="border-white/5 bg-white/[0.02] text-center">
-              <CardContent className="p-8 sm:p-10">
-                <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+            <Card className="border-white/10 bg-white/[0.03] text-center shadow-xl shadow-black/20">
+              <CardContent className="p-8 sm:p-12">
+                <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
                   <MessageSquare className="h-6 w-6 text-primary" />
                 </div>
-                <h2 className="mb-2 text-xl font-bold sm:text-2xl">Ready to Get Started?</h2>
-                <p className="mx-auto mb-6 max-w-sm text-sm text-muted-foreground">
+                <h2 className="mb-3 text-xl font-bold sm:text-2xl">Ready to Get Started?</h2>
+                <p className="mx-auto mb-8 max-w-sm text-[15px] leading-relaxed text-muted-foreground">
                   Jump into a conversation and experience the power of AI-driven support. No signup required.
                 </p>
                 <Link to="/chat">
@@ -304,8 +307,8 @@ export default function LandingPage() {
       </section>
 
       {/* ─── Footer ─── */}
-      <footer className="w-full border-t border-white/5 py-5">
-        <div className="mx-auto flex w-full max-w-[1080px] items-center justify-between px-6">
+      <footer className="w-full border-t border-white/10 py-8 sm:py-10">
+        <div className="layout-container layout-container-wide flex w-full items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="flex h-5 w-5 items-center justify-center rounded bg-primary">
               <Sparkles className="h-2.5 w-2.5 text-white" />
@@ -330,9 +333,9 @@ function SectionHeader({ badge, title, subtitle }: { badge: string; title: strin
       initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}
       variants={fadeInUp} transition={{ duration: 0.4 }}
     >
-      <Badge variant="outline" className="mb-3 border-primary/20 text-[11px] uppercase tracking-[0.15em] text-primary">{badge}</Badge>
+      <Badge variant="outline" className="mb-4 border-primary/20 text-[11px] uppercase tracking-[0.15em] text-primary">{badge}</Badge>
       <h2 className="text-xl font-bold sm:text-2xl lg:text-3xl">{title}</h2>
-      <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground sm:text-[15px]">{subtitle}</p>
+      <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-[15px]">{subtitle}</p>
     </motion.div>
   )
 }
@@ -340,13 +343,13 @@ function SectionHeader({ badge, title, subtitle }: { badge: string; title: strin
 function ChatBubble({ children, side, delay }: { children: React.ReactNode; side: 'left' | 'right'; delay: number }) {
   return (
     <motion.div
-      className={`flex ${side === 'right' ? 'justify-end' : 'justify-start'}`}
+      className={`flex w-full ${side === 'right' ? 'justify-end' : 'justify-start'}`}
       initial={{ opacity: 0, x: side === 'right' ? 12 : -12 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.35 }}
     >
-      <div className="max-w-[240px] rounded-2xl rounded-br-sm bg-primary px-3.5 py-2 text-[13px] leading-relaxed text-primary-foreground">
+      <div className="max-w-[85%] min-w-0 rounded-2xl rounded-br-sm bg-primary px-4 py-3 text-[14px] leading-[1.55] text-primary-foreground shadow-sm sm:max-w-[320px]">
         {children}
       </div>
     </motion.div>
@@ -356,19 +359,17 @@ function ChatBubble({ children, side, delay }: { children: React.ReactNode; side
 function AiBubble({ children, delay }: { children: React.ReactNode; delay: number }) {
   return (
     <motion.div
-      className="flex justify-start"
+      className="flex w-full justify-start gap-3"
       initial={{ opacity: 0, x: -12 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ delay, duration: 0.35 }}
     >
-      <div className="flex max-w-[320px] gap-2">
-        <div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-accent/20">
-          <Sparkles className="h-3 w-3 text-accent" />
-        </div>
-        <div className="rounded-2xl rounded-bl-sm border border-white/5 bg-white/[0.03] px-3.5 py-2 text-[13px] leading-relaxed">
-          {children}
-        </div>
+      <div className="mt-0.5 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-primary/20 ring-1 ring-primary/15">
+        <Sparkles className="h-3.5 w-3.5 text-primary" />
+      </div>
+      <div className="min-w-0 max-w-[85%] rounded-2xl rounded-bl-sm border border-white/10 bg-white/[0.06] px-4 py-3 text-[14px] leading-[1.55] shadow-sm sm:max-w-[340px]">
+        {children}
       </div>
     </motion.div>
   )
